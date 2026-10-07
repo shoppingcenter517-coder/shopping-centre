@@ -1,0 +1,66 @@
+SHOPPING CENTRE - Laptop par chalane ka simple guide
+=====================================================
+
+Is laptop par sirf Node.js chahiye (nodejs.org se "LTS" version download karke install karo,
+phir laptop restart kar lo). Aur kuch install nahi karna.
+
+
+STEP 1: Folder taiyar karo
+--------------------------
+Zip file ko extract karo (Desktop par), jaise  Desktop\shopping-centre
+
+
+STEP 2: PEHLI BAAR chalao (INTERNET ON rakhna)
+----------------------------------------------
+Windows me "Smart App Control" .bat file ko block kar sakta hai, isliye ye tarika use karo:
+  1. shopping-centre folder ke andar "backend" folder kholo.
+  2. Upar address bar par click karo, cmd likho, Enter dabao (Command Prompt khulega).
+  3. Pehli baar ye likho aur Enter dabao (1-2 minute lagenge):   npm install
+  4. Phir ye likho aur Enter dabao:                              node server.js
+(START-WINDOWS.bat chal jaye to wo bhi use kar sakte ho, wahi kaam karta hai.)
+Mac/Linux: Terminal me  ./start-mac-linux.sh  chalao.
+
+Pehli baar 2-5 minute lagenge, kyunki:
+  - project ke packages install hote hain
+  - built-in database (MongoDB) download hota hai
+Black window me "Shopping Centre chal gaya!" likha aaye to ho gaya.
+Browser apne aap khulega. Na khule to ye address khol lo:
+
+    Shop  :  http://localhost:5000
+    Admin :  http://localhost:5000/admin/login
+             username: admin
+             password: admin123
+
+IMPORTANT: Black window ko band mat karna, jab tak dikhana ho. Band karte hi site band ho jayegi.
+
+
+STEP 3: Professor ke samne dikhane se pehle
+-------------------------------------------
+- Ek baar ghar par internet ke saath Step 2 kar lo. Uske baad dobara internet ki zaroorat
+  nahi padti (product ki images project ke andar hi hain).
+- Ek test order place karke admin panel me dekh lo.
+- Dobara chalane ke liye: backend folder me cmd kholo aur  node server.js  likho (npm install dobara nahi chahiye).
+
+
+DEMO KA ORDER (professor ko kya dikhana hai)
+--------------------------------------------
+1. Shop kholo -> Men / Women filter dikhao, Out of Stock products dikhao.
+2. Kuch products cart me daalo -> Checkout -> naam, phone (10 digit), address, pincode bharo -> Place Order.
+3. Admin login karo -> Orders me naya order dikhega -> status badlo (Confirmed / Shipped / Delivered).
+4. Products tab me jao -> stock badlo ya naya product add karo.
+
+
+AGAR KUCH ATAK JAYE
+-------------------
+* "node is not recognized"  -> Node.js install nahi hua / restart karo.
+* Built-in database start nahi ho raha (error me "Download failed" ya "MongoMemoryServer"):
+  Internet check karo aur dobara chalao. Phir bhi na ho to:
+    1. https://www.mongodb.com/try/download/community se MongoDB Community Server install karo
+       (Windows: "Complete" install, "Install as a Service" tick rakhna).
+    2. backend\.env file Notepad me kholo aur ye line aise kar do:
+         MONGO_URI=mongodb://127.0.0.1:27017/shopping_centre
+    3. node server.js dobara chalao.
+* "port 5000 already in use" -> pehle wali black window band karo, ya laptop restart karo.
+* Products dobara original par laane hain -> backend\data folder delete karke dobara chalao
+  (built-in database ke case me).
+* Admin ka username/password badalna hai -> backend\.env me ADMIN_USERNAME / ADMIN_PASSWORD badlo.

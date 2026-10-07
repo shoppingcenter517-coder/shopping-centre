@@ -1,0 +1,93 @@
+SHOPPING CENTRE - Online (free) daalne ka guide
+================================================
+
+Final result:
+  - Code GitHub par (professor ko link ya folder dikha sakte ho)
+  - Live site ek link par, jaise  https://shopping-centre-xxxx.onrender.com
+  - Admin panel:  <wo link>/admin/login
+Teeno cheezein free hain: GitHub, MongoDB Atlas (database), Render (site).
+Sab me Google se sign up ho jata hai. Kul time: 30-40 minute.
+
+
+PART 1: Database (MongoDB Atlas)
+--------------------------------
+1. https://www.mongodb.com/cloud/atlas/register par account banao.
+2. Free cluster banao: "M0 / Free" chuno, provider AWS, region Mumbai (ya jo paas ho). "Create".
+3. Security Quickstart me:
+     - Username aur Password banao (password simple rakho, jaise  Shop12345  -- @ # jaise special
+       characters mat rakhna). Dono kahin likh lo.
+     - "Where would you like to connect from?" me  "Add My Current IP"  ki jagah neeche
+       "Network Access" me jaake  ADD IP ADDRESS -> "ALLOW ACCESS FROM ANYWHERE" (0.0.0.0/0) -> Confirm.
+4. "Connect" -> "Drivers" -> connection string copy karo. Aisi dikhegi:
+     mongodb+srv://USERNAME:<db_password>@cluster0.xxxxx.mongodb.net/?retryWrites=true&w=majority
+5. Is string ko Notepad me aise taiyar karo:
+     - <db_password> ki jagah apna password likho (< > hata do)
+     - "mongodb.net/" ke baad "?" se pehle  shopping_centre  likho. Final aisi:
+     mongodb+srv://USERNAME:Shop12345@cluster0.xxxxx.mongodb.net/shopping_centre?retryWrites=true&w=majority
+   Ye final string Part 3 me kaam aayegi.
+
+
+PART 2: Code GitHub par daalo
+-----------------------------
+1. https://github.com par account banao.
+2. New repository banao: naam  shopping-centre,  Public,  "Add README" tick MAT karna. Create.
+3. Computer par Git install karo: https://git-scm.com/download/win (Next-Next-Install).
+4. shopping-centre folder (jisme package.json aur backend/frontend folders hain) me cmd kholo
+   (address bar me cmd likh ke Enter) aur ye commands ek-ek karke chalao
+   (APNA-USERNAME ki jagah apna GitHub username):
+
+     git init
+     git add .
+     git commit -m "Shopping Centre project"
+     git branch -M main
+     git remote add origin https://github.com/APNA-USERNAME/shopping-centre.git
+     git push -u origin main
+
+   Pehli baar GitHub login ka window aayega, login kar do.
+   (Pehli baar git commit par "Please tell me who you are" aaye to ye 2 commands chalao, phir commit dobara:
+     git config --global user.email "aapka@email.com"
+     git config --global user.name "Aapka Naam" )
+5. GitHub page refresh karo. Code dikhna chahiye. (.env file aur node_modules upload nahi hote, ye sahi hai.)
+
+
+PART 3: Live site (Render)
+--------------------------
+1. https://render.com par "Get Started" -> GitHub se sign up karo, repository access allow karo.
+2. "New +" -> "Web Service" -> apni "shopping-centre" repository chuno -> Connect.
+3. Settings ye rakho:
+     Name           : shopping-centre   (link isi se banega; busy ho to kuch bhi alag likh do)
+     Region         : Singapore
+     Branch         : main
+     Runtime        : Node
+     Build Command  : npm run build
+     Start Command  : npm start
+     Instance Type  : Free
+4. "Environment Variables" me ye add karo:
+     MONGO_URI        =  (Part 1 ki final string)
+     ADMIN_USERNAME   =  admin
+     ADMIN_PASSWORD   =  (apna password, jaise  Prof@2026 )
+     JWT_SECRET       =  koi bhi lambi random line, jaise  sc-9f82hd72hd8s7d2k29d
+     NODE_VERSION     =  20
+5. "Create Web Service" dabao. 5-8 minute build lagega (logs me kaam dikhta rahega).
+   "Your service is live" / "Shopping Centre chal gaya!" dikhe to ho gaya.
+6. Upar jo link dikhe (https://....onrender.com) wahi live site hai.
+   Admin:  us link ke end me  /admin/login  lagao.
+   Pehli baar products apne aap database me ban jate hain.
+
+
+SUBMISSION SE PEHLE (IMPORTANT)
+-------------------------------
+* Render ka free plan 15 minute use na hone par site "sleep" kar deta hai. Phir pehla khulna
+  1 minute tak le sakta hai. Isliye professor ko dikhane se 5-10 minute pehle link khol ke
+  site "jaga" do, aur ek test order karke dekh lo.
+* Link, admin username aur password kahin likh ke rakho.
+* Code dikhane ke liye: GitHub repository ka link, ya laptop par shopping-centre folder.
+
+
+Code badalna ho to (baad me)
+----------------------------
+Folder me cmd kholo:
+     git add .
+     git commit -m "update"
+     git push
+Render apne aap naya version daal dega.
